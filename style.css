@@ -162,13 +162,107 @@ ul.header_main_links li a:active::after {
   transform: scaleX(1);
 }
 
+/* showcase */
+section#showcase {
+  height: 100vh;
+  background-image: url('./images/13.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* not scroll */
+}
+div.showcase_content {
+  background-color: var(--secondary-color-m);
+  padding: calc(1rem + 2vw);
+  /* 100분의 1 단위  너비 1500이면 15px / vh not working*/
+  height: calc(5rem + 20vmax);
+  /* 20vmax = 1500의 20%*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  animation: hero 2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+@keyframes hero {
+  0% {
+    transform: translateX(100rem) rotate(360deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.showcase_content_title {
+  font-size: calc(2rem + 3vw);
+  color: white;
+  /* 가로 = vw */
+  /* 너비 = 600일경우 6 곱하기 3 =18px 
+    20px + 18px = 38px */
+}
+.showcase_content_para {
+  font-family: 'Indie Flower', cursive;
+  font-size: calc(1.5rem + 1vw);
+  color: white;
+}
+.showcase_content_link:link,
+.showcase_content_link:visited {
+  padding: 1rem 0;
+  /* click comfort */
+  transition: all 0.5s ease-in-out;
+  width: 9rem;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+  position: relative;
+  z-index: 0;
+  /* My work >>> after */
+}
+.showcase_content_link:link::after,
+.showcase_content_link:visited::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--primary--color);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s;
+  z-index: -1;
+}
+.showcase_content_link:hover::after,
+.showcase_content_link:active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+/* 주의사항 : width가 넓은순서대로 작성할것 
+   images => position으로 반응형 조절*/
+
+
+/* max-width : 900px Mark  */
+
+@media screen and (max-width: 900px) {
+  section#showcase {
+    background-position: 90%;
+    align-items: flex-end;
+  }
+
+
 /* max-width : 610px Mark  */
 
 @media screen and (max-width: 610px) {
   /* Main Nav Header */
-  /* header#header {
+  header#header {
     position: absolute;
-  } */
+  }
   nav#header_main_nav {
     width: 30rem;
     height: 100%;
@@ -245,4 +339,10 @@ ul.header_main_links li a:active::after {
   .clicked div.line-3 {
     transform: rotateZ(405deg) translate(-0.8rem, -0.6rem);
   }
+  section#showcase {
+    background-position: 75%;
+  }
 }
+
+
+
